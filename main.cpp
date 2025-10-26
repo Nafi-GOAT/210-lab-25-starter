@@ -4,6 +4,7 @@
 #include <list>
 #include <set>
 #include <fstream>
+#include <algorithm>
 using namespace std;
 using namespace std::chrono;
 
@@ -72,14 +73,14 @@ int main() {
     // --- RACE 4:
 
     start = high_resolution_clock::now();
-    vec.erase(vec.begin() ++ vec.size()/2);
+    vec.erase(vec.begin() + vec.size()/2);
     end = high_resolution_clock::now();
     auto vecDelete = duration_cast<microseconds>(end - start).count();
 
     start = high_resolution_clock::now();
-    it = list.begin();
-    advance(it, list.size()/2);
-    list.erase(it);
+    it = lst.begin();
+    advance(it, lst.size()/2);
+    lst.erase(it);
     end = high_resolution_clock::now();
     auto listDelete = duration_cast<microseconds>(end - start).count();
 
@@ -88,12 +89,12 @@ int main() {
     end = high_resolution_clock::now();
     auto setDelete = duration_cast<microseconds>(end - start).count();
 
+    cout << "\nOperation\tVector\tList\tSet\n";
+    cout << "Read\t\t" << vecRead << "\t" << listRead << "\t" << setRead << endl;
+    cout << "Sort\t\t" << vecSort << "\t" << listSort << "\t" << setSort << endl;
+    cout << "Insert\t\t" << vecInsert << "\t" << listInsert << "\t" << setInsert << endl;
+    cout << "Delete\t\t" << vecDelete << "\t" << listDelete << "\t" << setDelete << endl;
+
     return 0;
 }
 
-/* syntax examples:
-auto start = high_resolution_clock::now()
-auto end = high_resolution_clock::now()
-auto duration = duration_cast<milliseconds>(end - start)
-duration.count() references elapsed milliseconds
-*/
