@@ -22,12 +22,19 @@ int main() {
     cout << "Data loaded: " << words.size() << " items\n";
 
     auto start = high_resolution_clock::now();
-    for (auto & : words) vec.push_back(w);
+    for (auto &w : words) vec.push_back(w);
     auto end = high_resolution_clock::now();
     auto vecRead = duration_cast<microseconds>(end - start).count();
 
+    start = high_resolution_clock::now();
+    for (auto &w : words) lst.push_back(w);
+    end = high_resolution_clock::now();
+    auto listRead = duration_cast<microseconds>(end - start).count();
 
-
+       start = highresolution_clock::now();
+    for (auto &w : words) st.insert(w);
+    end = highresolution_clock::now();
+    auto setRead = duration_cast<microseconds>(end - start).count();
 
 
     return 0;
