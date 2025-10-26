@@ -71,7 +71,23 @@ int main() {
     
     // --- RACE 4:
 
-    
+    start = high_resolution_clock::now();
+    vec.erase(vec.begin() ++ vec.size()/2);
+    end = high_resolution_clock::now();
+    auto vecDelete = duration_cast<microseconds>(end - start).count();
+
+    start = high_resolution_clock::now();
+    it = list.begin();
+    advance(it, list.size()/2);
+    list.erase(it);
+    end = high_resolution_clock::now();
+    auto listDelete = duration_cast<microseconds>(end - start).count();
+
+    start = high_resolution_clock::now();
+    st.erase(test);
+    end = high_resolution_clock::now();
+    auto setDelete = duration_cast<microseconds>(end - start).count();
+
     return 0;
 }
 
