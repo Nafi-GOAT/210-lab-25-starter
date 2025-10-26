@@ -47,6 +47,20 @@ int main() {
     auto listSort = duration_cast<microseconds>(end - start).count();
 
     long setSort = 1;
+
+    string test = "TESTCODE";
+    start = high_resolution_clock::now();
+    vec.insert(vec.begin() + vec.size()/3, test);
+    end = high_resolution_clock::now();
+    auto vecInsert = duration_cast<microseconds>(end - start).count();
+
+    start = high_resolution_clock::now();
+    auto it = lst.begin();
+    advance(it, lst.size()/3);
+    lst.insert(it, test);
+    end = high_resolution_clock::now();
+    auto listInsert = duration_cast<microseconds>(end - start).count();
+
     return 0;
 }
 
