@@ -21,6 +21,7 @@ int main() {
 
     cout << "Data loaded: " << words.size() << " items\n";
 
+  // --- RACE 1:
     auto start = high_resolution_clock::now();
     for (auto &w : words) vec.push_back(w);
     auto end = high_resolution_clock::now();
@@ -31,11 +32,12 @@ int main() {
     end = high_resolution_clock::now();
     auto listRead = duration_cast<microseconds>(end - start).count();
 
-       start = high_resolution_clock::now();
+    start = high_resolution_clock::now();
     for (auto &w : words) st.insert(w);
     end = high_resolution_clock::now();
     auto setRead = duration_cast<microseconds>(end - start).count();
-
+    
+    // --- RACE 2:
     start = high_resolution_clock::now();
     sort(vec.begin(), vec.end());
     end = high_resolution_clock::now();
@@ -46,21 +48,30 @@ int main() {
     end = high_resolution_clock::now();
     auto listSort = duration_cast<microseconds>(end - start).count();
 
-    long setSort = 1;
+    long setSort = -1;
 
+    // --- RACE 3:
     string test = "TESTCODE";
     start = high_resolution_clock::now();
-    vec.insert(vec.begin() + vec.size()/3, test);
+    vec.insert(vec.begin() + vec.size()/2, test);
     end = high_resolution_clock::now();
     auto vecInsert = duration_cast<microseconds>(end - start).count();
 
     start = high_resolution_clock::now();
     auto it = lst.begin();
-    advance(it, lst.size()/3);
+    advance(it, lst.size()/2);
     lst.insert(it, test);
     end = high_resolution_clock::now();
     auto listInsert = duration_cast<microseconds>(end - start).count();
 
+    start = high_resolution_clock::now();
+    st.insert(test);
+    end = high_resolution_clock::now();
+    auto setInsert = duration_cast<microseconds>(end - start).count();
+    
+    // --- RACE 4:
+
+    
     return 0;
 }
 
