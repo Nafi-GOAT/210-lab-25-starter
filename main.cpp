@@ -31,12 +31,22 @@ int main() {
     end = high_resolution_clock::now();
     auto listRead = duration_cast<microseconds>(end - start).count();
 
-       start = highresolution_clock::now();
+       start = high_resolution_clock::now();
     for (auto &w : words) st.insert(w);
-    end = highresolution_clock::now();
+    end = high_resolution_clock::now();
     auto setRead = duration_cast<microseconds>(end - start).count();
 
+    start = high_resolution_clock::now();
+    sort(vec.begin(), vec.end());
+    end = high_resolution_clock::now();
+    auto vecSort = duration_cast<microseconds>(end - start).count();
 
+    start = high_resolution_clock::now();
+    lst.sort();
+    end = high_resolution_clock::now();
+    auto listSort = duration_cast<microseconds>(end - start).count();
+
+    long setSort = 1;
     return 0;
 }
 
