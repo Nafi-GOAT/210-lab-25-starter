@@ -1,9 +1,31 @@
 #include <iostream>
 #include <chrono>
+#include <vector>
+#include <list>
+#include <set>
+#include <fstream>
 using namespace std;
+using namespace std::chrono;
 
 int main() {
-// test
+    vector<string> vec;
+    list<string> lst;
+    set<string> st;
+
+    fstream fin("data.txt");
+    string word;
+    vector<string> words;
+    while (fin >> word)
+        words.pop_back(word);
+    fin.close();
+
+    cout << "Data loaded: " << words.size() << " items\n";
+
+
+
+
+
+
 
     return 0;
 }
